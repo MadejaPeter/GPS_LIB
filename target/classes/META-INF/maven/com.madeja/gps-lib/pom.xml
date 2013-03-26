@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.madeja</groupId>
     <artifactId>gps-lib</artifactId>
-    <version>0.01</version>
+    <version>0.02</version>
     <packaging>apk</packaging>
     <name>GPS Library</name>
 	
@@ -29,9 +29,21 @@
             <version>${platform.version}</version>
             <scope>provided</scope>
         </dependency>
+        	<dependency>
+  <groupId>com.google.android.maps</groupId>
+  <artifactId>maps</artifactId>
+  <version>10_r2</version>
+  <scope>provided</scope>
+</dependency>
     </dependencies>
 
     <build>
+	  <resources>
+      <resource>
+        <directory>manual_tests</directory>
+		</resource>
+		</resources>
+	
         <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
