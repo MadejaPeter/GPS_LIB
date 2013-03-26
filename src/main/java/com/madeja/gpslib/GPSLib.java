@@ -71,6 +71,6 @@ public class MyLocationListener implements LocationListener {
 	{ 
 
 	} 
-
+	//pridanie do vzdialeneho repozitara
 }
 }
