@@ -40,6 +40,22 @@ public class GPSLib {
 	}
 
 
+	public Location getCurrentLocation() {
+		LocationManager locationManager = (LocationManager) context
+				.getSystemService(Context.LOCATION_SERVICE);
+		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+			Location location = locationManager
+					.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+			return location;
+		}
+		if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			Location location = locationManager
+					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+			return location;
+		}
+		return null;
+	}
+
 public class MyLocationListener implements LocationListener { 
 
 	@Override 
