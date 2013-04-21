@@ -23,6 +23,7 @@ public class GPSLib {
 	public void zapniKompas(Activity aktivita, MapView mapa) {
 		 MyLocationOverlay overlaySKompasom=new MyLocationOverlay(aktivita, mapa);
 		 overlaySKompasom.enableCompass();
+		 overlaySKompasom.enableMyLocation();
 		 mapa.getOverlays().add(overlaySKompasom);
 	}
 	
