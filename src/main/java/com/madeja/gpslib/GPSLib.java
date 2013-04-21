@@ -1,6 +1,10 @@
 package com.madeja.gpslib;
 
+import java.util.List;
+
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -55,12 +59,32 @@ public class GPSLib {
 		}
 		return null;
 	}
+	private boolean isAppOnForeground(Context context) {
+		ActivityManager activityManager = (ActivityManager) context
+				.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningAppProcessInfo> appProcesses = activityManager
+				.getRunningAppProcesses();
+		if (appProcesses == null) {
+			return false;
+		}
+		final String packageName = context.getPackageName();
+		for (RunningAppProcessInfo appProcess : appProcesses) {
+			if (appProcess.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND
+					&& appProcess.processName.equals(packageName)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 public class MyLocationListener implements LocationListener { 
 
 	@Override 
 	public void onLocationChanged(Location loc) {
 		if (!oznamujLokaciu) {
+			return;
+		}
+		if (!isAppOnForeground(context)) {
 			return;
 		}
 		loc.getLatitude(); 
